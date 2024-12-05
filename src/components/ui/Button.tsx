@@ -6,7 +6,7 @@ interface Iprops extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 const Button = ({children ,className ,...rest}:Iprops) => {
-  return <button className={`${className} p-3  rounded-xl flex-1 cursor-pointer`} {...rest}   >{children}
+  return <button className={`${className} p-3  rounded-xl flex-1 `} {...rest}   >{children}
   </button>;
 };
 
