@@ -1,6 +1,7 @@
 import Image from "../ImageCompon/Image";
 import { IProduct } from "../interfaces";
 import Button from "../ui/Button";
+import { lesstxt } from "../Utils/function";
 
 interface Iprops{
   product: IProduct;
@@ -15,7 +16,7 @@ const ProductCard = ({product}:Iprops) => {
 
 <h3 className="m-1">{title}</h3>
 
-<p>{description}</p>
+<p>{lesstxt(description)}</p>
 <div className="flex m-1">
 <span className="bg-slate-950  w-6 h-6 rounded-full mr-1 cursor-pointer"  />
 <span className="bg-gray-800  w-6 h-6 rounded-full mr-1 cursor-pointer"  />
