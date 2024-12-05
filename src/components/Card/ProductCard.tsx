@@ -11,9 +11,9 @@ const ProductCard = () => {
 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit iusto, eum enim doloribus neque, doloremque deserunt nostrum omnis explicabo distinctio accusantium tenetur veritatis ut incidunt, tempora saepe. Voluptatem, nihil numquam!</p>
 
 <div className="flex m-1">
-<span className="bg-slate-950  w-6 h-6 rounded-full mr-1"  />
-<span className="bg-gray-800  w-6 h-6 rounded-full mr-1"  />
-<span className="bg-red-950  w-6 h-6 rounded-full mr-1"  />
+<span className="bg-slate-950  w-6 h-6 rounded-full mr-1 cursor-pointer"  />
+<span className="bg-gray-800  w-6 h-6 rounded-full mr-1 cursor-pointer"  />
+<span className="bg-red-950  w-6 h-6 rounded-full mr-1 cursor-pointer"  />
 
 </div>
 
