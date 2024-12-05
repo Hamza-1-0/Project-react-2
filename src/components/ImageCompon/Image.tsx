@@ -1,12 +1,12 @@
 
 interface Iprops {
     imageUrl : string,
-    Alt: string,
-    Classname:string 
+    alt: string,
+    classname:string 
 }
 
-const Image = ({imageUrl ,Alt ,Classname}:Iprops) => {
-  return <img src={imageUrl} alt={Alt} className={Classname} />;
+const Image = ({imageUrl ,alt ,classname}:Iprops) => {
+  return <img src={imageUrl} alt={alt} className={classname} />;
 };
 
 export default  Image;
