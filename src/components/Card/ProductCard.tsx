@@ -14,9 +14,9 @@ const ProductCard = ({product}:Iprops) => {
 
 <Image imageUrl={imageUrl} alt={"Prodact Name"} classname="rounded-lg"/>
 
-<h3 >{title}</h3>
+<h3 className="text-lg font-semibold">{lesstxt(title , 25)}</h3>
 
-<p>{lesstxt(description)}</p>
+<p className="text-xs text-gray-600 break-words ">{lesstxt(description)}</p>
 <div className="flex m-1">
 <span className="bg-slate-950  w-6 h-6 rounded-full mr-1 cursor-pointer"  />
 <span className="bg-gray-800  w-6 h-6 rounded-full mr-1 cursor-pointer"  />
@@ -25,12 +25,12 @@ const ProductCard = ({product}:Iprops) => {
 </div>
 
 <div className="flex  justify-between items-center my-4 space-x-2">
-<span>{price}</span>
+<span className="text-lg  text-indigo-600 font-semibold">{price}</span>
 <Image imageUrl={category.imageUrl} alt={category.name} classname="w-12 h-12 rounded-full"/>
 
 </div>
 
-<div className="flex justify-between gap-2 ">
+<div className="flex items-center justify-between space-x-2 ">
 <Button className="border-red-700 bg-red-700  text-white ">EDIT</Button>
 <Button className="border-blue-600 bg-slate-600  text-white">REMOVE</Button>
 </div>
