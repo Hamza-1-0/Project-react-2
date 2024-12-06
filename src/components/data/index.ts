@@ -73,7 +73,31 @@ export const productlist : IProduct[]=[
                         name:"car",
                         imageUrl:"https://picsum.photos/seed/Ls7rgy5YnW/640/480",
                 }},
-                
+                {
+                    id:7,
+                    title :"Modern Plastic Computer" ,
+                    description:"Carbonite web goalkeeper gloves are ergonomically designed to give easy fit",
+                    imageUrl:"https://picsum.photos/seed/VQkR5JH/640/480",
+                    price:"300.00",
+                    colors:['#7fff00','#00ffff' ,'#bdb76b'],
+                    category:{
+                        name:"car",
+                        imageUrl:"https://picsum.photos/seed/VQkR5JH/640/480" },
+                       
+                        },
+                            {
+                                id:8,
+                                title :"Modern Plastic Computer" ,
+                                description:"Carbonite web goalkeeper gloves are ergonomically designed to give easy fit",
+                                imageUrl:"https://picsum.photos/seed/VQkR5JH/640/480",
+                                price:"300.00",
+                                colors:['#7fff00','#00ffff' ,'#bdb76b'],
+                                category:{
+                                    name:"car",
+                                    imageUrl:"https://picsum.photos/seed/VQkR5JH/640/480" },
+                                   
+                                    },
+                        
 
 
 ]

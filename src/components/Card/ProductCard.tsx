@@ -8,13 +8,13 @@ interface Iprops{
 }
 
 const ProductCard = ({product}:Iprops) => {
-  const{ title , description , imageUrl,price }= product
+  const{ title , description , imageUrl,price ,category}= product
     return( 
-  <div className="border border-gray-600 flex flex-col rounded-md m-3  p-5">
+  <div className=" max-w-sm md:max-w-lg  mx-auto md:mx-0  border  flex flex-col rounded-lg p-2">
 
-<Image imageUrl={imageUrl} alt={"Prodact Name"} classname="rounded-s"/>
+<Image imageUrl={imageUrl} alt={"Prodact Name"} classname="rounded-lg"/>
 
-<h3 className="m-1">{title}</h3>
+<h3 >{title}</h3>
 
 <p>{lesstxt(description)}</p>
 <div className="flex m-1">
@@ -26,7 +26,7 @@ const ProductCard = ({product}:Iprops) => {
 
 <div className="flex  justify-between items-center my-4 space-x-2">
 <span>{price}</span>
-<Image imageUrl={imageUrl} alt={"Prodact Name"} classname="w-12 h-12 rounded-full"/>
+<Image imageUrl={category.imageUrl} alt={category.name} classname="w-12 h-12 rounded-full"/>
 
 </div>
 
