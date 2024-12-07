@@ -1,5 +1,6 @@
 import {  Dialog, DialogPanel, DialogTitle } from '@headlessui/react'
 import { ReactNode } from 'react'
+ 
 
 interface Iprops{
   isOpen:boolean,
@@ -8,11 +9,7 @@ interface Iprops{
   children:ReactNode
 }
 
-
-
-
 const Modal =({isOpen,close,title,children}:Iprops)=> {
-
 
   return (
     <>

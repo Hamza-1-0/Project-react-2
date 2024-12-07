@@ -10,3 +10,12 @@ export interface IProduct {
         imageUrl:string;
     };
 }
+
+
+export interface IFormInput{
+id:string,
+name:string,
+type:string,
+label:string,
+
+}

@@ -26,7 +26,7 @@ const Rendarproductlist =productlist.map(product => <ProductCard key={product.id
 
   return (
     <main className="container ">
-        <Button className=' bg-red-700 ' onClick={open}>Add</Button>
+        <Button className=' bg-red-700 'onClick={open}>Add</Button>
 
        <Modal isOpen={isOpen}  close={close} title='Add A NEW Product'>
         <div className="flex items-center  space-x-2">

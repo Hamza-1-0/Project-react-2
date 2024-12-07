@@ -1,4 +1,5 @@
 import{IProduct} from "../interfaces/index"
+import{IFormInput} from "../interfaces/index"
 
 
 export const productlist : IProduct[]=[
@@ -99,5 +100,39 @@ export const productlist : IProduct[]=[
                                     },
                         
 
+
+]
+
+
+
+
+
+export const forminputlist : IFormInput[]=[
+{
+    id:"Title",
+    name:"Title",
+    label:"Product Title",
+     type:"text"
+    },
+        {
+    id:"Description",
+    name:"Description",
+    label:"Product Description", 
+    type:"text"
+    },
+
+        {
+    id:"ImageUrl",
+    name:"ImageUrl",
+    label:"Product ImageUrl", 
+    type:"text"
+    },
+    
+        {
+    id:"Price",
+    name:"Price",
+    label:"Product Price",
+    type:"text"
+}
 
 ]
