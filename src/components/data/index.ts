@@ -133,6 +133,6 @@ export const forminputlist : IFormInput[]=[
     name:"Price",
     label:"Product Price",
     type:"text"
-}
+},
 
 ]

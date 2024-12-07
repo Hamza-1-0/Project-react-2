@@ -13,9 +13,9 @@ export interface IProduct {
 
 
 export interface IFormInput{
-id:string,
-name:string,
-type:string,
-label:string,
+    id:string,
+    name:string,
+    type:string,
+    label:string,
 
-}
+    }
