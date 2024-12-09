@@ -1,36 +1,58 @@
 import ProductCard from './components/Card/ProductCard'
 import { productlist } from './components/data'
 import { forminputlist } from './components/data'
-import { useState } from 'react'
+import { ChangeEvent, useState } from 'react'
 import Modal from './components/ui/Modal'
 import Button from './components/ui/Button'
 import Input from './components/ui/Input'
+import { IProduct } from './components/interfaces'
 
 function App() {
 
 //------------State--------//
 
 const [isOpen, setIsOpen] = useState(false)
+const[product,setproduct] = useState<IProduct>({
+title :'',
+description:'',
+imageUrl:'',
+price:'',
+colors :[],
+category:{
+  name:"",
+  imageUrl:""
+}
+})
 
-//------------Rendars--------//
+//------------Handlers--------//
 
-function open() {
-  setIsOpen(true)
+const open = ()=> setIsOpen(true)
+const close = ()=> setIsOpen(false)
+const onchangeHandler = (event:ChangeEvent<HTMLInputElement>)=>{
+  const {value , name} = event.target
+
+  setproduct ({
+    ...product,
+    [name]:value,
+  })
 }
 
-function close() {
-  setIsOpen(false)
-}
-
-//------------Rendars--------//
+                  //------------Rendars--------//
 
 const Rendarproductlist =productlist.map(product => <ProductCard key={product.id} product={product}/> )  
 
 const RendarsForminput =forminputlist.map(input => 
+
 <div className='flex flex-col'>
+
   <label htmlFor="input" className='text-white mb-1'>{input.label}</label>
-<Input  type={input.type} name={input.name} id={input.id}/>
+
+<Input  type={input.type} name={input.name} id={input.id} value={""} onChange={onchangeHandler}/>
+
 </div> )
+ 
+                //------------Calls--------//
+
 
   return (
     <main className="container ">
@@ -44,8 +66,8 @@ const RendarsForminput =forminputlist.map(input =>
           {RendarsForminput}
 
         <div className="flex items-center  space-x-2">
-          <Button className=' bg-red-700 '>Submit</Button>
-          <Button className=' bg-gray-700 '>Cancel</Button>
+          <Button className=' bg-red-700 text-white '>Submit</Button>
+          <Button className=' bg-gray-700  text-white '>Cancel</Button>
         </div>
         </div>      
        </Modal>
