@@ -1,18 +1,14 @@
 import ProductCard from './components/Card/ProductCard'
 import { productlist } from './components/data'
 import { forminputlist } from './components/data'
-import { ChangeEvent, useState } from 'react'
+import { ChangeEvent, useState ,FormEvent } from 'react'
 import Modal from './components/ui/Modal'
 import Button from './components/ui/Button'
 import Input from './components/ui/Input'
 import { IProduct } from './components/interfaces'
 
 function App() {
-
-//------------State--------//
-
-const [isOpen, setIsOpen] = useState(false)
-const[product,setproduct] = useState<IProduct>({
+const defaultprojectobj = {
 title :'',
 description:'',
 imageUrl:'',
@@ -21,8 +17,16 @@ colors :[],
 category:{
   name:"",
   imageUrl:""
-}
-})
+},
+};
+
+
+
+//------------State--------//
+
+const [isOpen, setIsOpen] = useState(false)
+
+const[product,setproduct] = useState<IProduct>(defaultprojectobj)
 
 //------------Handlers--------//
 
@@ -34,16 +38,24 @@ const onchangeHandler = (event:ChangeEvent<HTMLInputElement>)=>{
   setproduct ({
     ...product,
     [name]:value,
-  })
-}
+  });
+};
+  const submitobject = (event: FormEvent<HTMLFormElement>): void => {
+   event.preventDefault();
+   console.log(product);
+  };
+  const oncancel = () => {
+     setproduct(defaultprojectobj);
+     close();
+  };
 
-                  //------------Rendars--------//
+//------------Rendars--------//
 
 const Rendarproductlist =productlist.map(product => <ProductCard key={product.id} product={product}/> )  
 
 const RendarsForminput =forminputlist.map(input => 
 
-<div className='flex flex-col'>
+<div className='flex flex-col' key={input.id}>
 
   <label htmlFor="input" className='text-white mb-1'>{input.label}</label>
 
@@ -51,6 +63,8 @@ const RendarsForminput =forminputlist.map(input =>
 
 </div> )
  
+
+
                 //------------Calls--------//
 
 
@@ -62,14 +76,15 @@ const RendarsForminput =forminputlist.map(input =>
        {Rendarproductlist}
     </div>
        <Modal isOpen={isOpen}  close={close} title='Add A NEW Product'>
-        <div className=" space-y-3"> 
+        <form className=" space-y-3" onSubmit={submitobject}> 
           {RendarsForminput}
 
         <div className="flex items-center  space-x-2">
           <Button className=' bg-red-700 text-white '>Submit</Button>
-          <Button className=' bg-gray-700  text-white '>Cancel</Button>
+          <Button className=' bg-gray-700  text-white ' onClick={oncancel}>Cancel</Button>
         </div>
-        </div>      
+
+        </form>      
        </Modal>
       
 </main>
