@@ -110,27 +110,27 @@ export const productlist : IProduct[]=[
 export const forminputlist : IFormInput[]=[
 {
     id:"Title",
-    name:"Title",
+    name:"title",
     label:"Product Title",
      type:"text"
     },
         {
     id:"Description",
-    name:"Description",
+    name:"description",
     label:"Product Description", 
     type:"text"
     },
 
         {
     id:"ImageUrl",
-    name:"ImageUrl",
+    name:"imageUrl",
     label:"Product ImageUrl", 
     type:"text"
     },
     
         {
     id:"Price",
-    name:"Price",
+    name:"price",
     label:"Product Price",
     type:"text"
 },

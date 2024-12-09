@@ -1,5 +1,5 @@
-import {  Dialog, DialogPanel, DialogTitle } from '@headlessui/react'
 import { ReactNode } from 'react'
+import {  Dialog, DialogPanel, DialogTitle } from '@headlessui/react'
  
 
 interface Iprops{
