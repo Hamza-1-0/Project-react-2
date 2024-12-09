@@ -47,7 +47,7 @@ const RendarsForminput =forminputlist.map(input =>
 
   <label htmlFor="input" className='text-white mb-1'>{input.label}</label>
 
-<Input  type={input.type} name={input.name} id={input.id} value={""} onChange={onchangeHandler}/>
+<Input  type={input.type} name={input.name} id={input.id} value={product[input.name]} onChange={onchangeHandler}/>
 
 </div> )
  
