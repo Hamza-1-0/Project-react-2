@@ -48,6 +48,11 @@ function App() {
       ...product,
       [name]: value,
     });
+
+    setErrors({
+      ...errors,
+      [name]: "",
+    });
   };
 
   const oncancel = () => {
