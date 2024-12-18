@@ -51,7 +51,10 @@ const oncancel = () => {
 
   const submitobject = (event: FormEvent<HTMLFormElement>): void => {
    event.preventDefault();
-const errors = ValidtionObj({title: product.title , description:product.description , imageUrl: product.imageUrl , price : product.price})
+
+  const {title , description , imageUrl , price } = product
+
+  const errors = ValidtionObj({title , description , imageUrl , price})
 
    console.log(errors);
   };
