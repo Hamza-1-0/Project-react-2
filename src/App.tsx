@@ -7,6 +7,7 @@ import Button from './components/ui/Button'
 import Input from './components/ui/Input'
 import { IProduct } from './components/interfaces'
 import { ValidtionObj } from './components/Validation'
+import ErrorMassage from './components/ErrorMassage'
 
 function App() {
 const defaultprojectobj = {
@@ -26,6 +27,8 @@ category:{
 //------------State--------//
 
 const [isOpen, setIsOpen] = useState(false)
+
+const [errors , setErrors] = useState({ title :'', description:'', imageUrl:'',price:'' })
 
 const[product,setproduct] = useState<IProduct>(defaultprojectobj)
 
@@ -60,6 +63,7 @@ const hasErrorMsg =
 Object.values(errors).some(value => value === "") && Object.values(errors).every(value => value === "");
 
 if (!hasErrorMsg) {
+  setErrors(errors)
   return;
 };
 
@@ -72,15 +76,17 @@ console.log("Send product to Server")
 
 const Rendarproductlist =productlist.map(product => <ProductCard key={product.id} product={product}/> )  
 
-const RendarsForminput =forminputlist.map(input => 
+const RendarsForminput = forminputlist.map(input => (
 
-<div className='flex flex-col' key={input.id}>
+<div className='flex flex-col ' key={input.id}>
 
   <label htmlFor="input" className='text-white mb-1'>{input.label}</label>
 
 <Input  type={input.type} name={input.name} id={input.id} value={product[input.name]} onChange={onchangeHandler}/>
 
-</div> );
+<ErrorMassage msg={errors[input.name]}/>
+</div> 
+));
  
 
 
