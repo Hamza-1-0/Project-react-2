@@ -6,6 +6,7 @@ import Modal from './components/ui/Modal'
 import Button from './components/ui/Button'
 import Input from './components/ui/Input'
 import { IProduct } from './components/interfaces'
+import { ValidtionObj } from './components/Validation'
 
 function App() {
 const defaultprojectobj = {
@@ -31,7 +32,9 @@ const[product,setproduct] = useState<IProduct>(defaultprojectobj)
 //------------Handlers--------//
 
 const open = ()=> setIsOpen(true)
+
 const close = ()=> setIsOpen(false)
+
 const onchangeHandler = (event:ChangeEvent<HTMLInputElement>)=>{
   const {value , name} = event.target
 
@@ -40,15 +43,19 @@ const onchangeHandler = (event:ChangeEvent<HTMLInputElement>)=>{
     [name]:value,
   });
 };
-  const submitobject = (event: FormEvent<HTMLFormElement>): void => {
-   event.preventDefault();
-   console.log(product);
-  };
-  const oncancel = () => {
+
+const oncancel = () => {
      setproduct(defaultprojectobj);
      close();
   };
 
+  const submitobject = (event: FormEvent<HTMLFormElement>): void => {
+   event.preventDefault();
+const errors = ValidtionObj({title: product.title , description:product.description , imageUrl: product.imageUrl , price : product.price})
+
+   console.log(errors);
+  };
+ 
 //------------Rendars--------//
 
 const Rendarproductlist =productlist.map(product => <ProductCard key={product.id} product={product}/> )  
