@@ -3,39 +3,44 @@ import { IProduct } from "../interfaces";
 import Button from "../ui/Button";
 import { lesstxt } from "../Utils/function";
 
-interface Iprops{
+interface Iprops {
   product: IProduct;
 }
 
-const ProductCard = ({product}:Iprops) => {
-  const{ title , description , imageUrl,price ,category}= product
-    return( 
-  <div className=" max-w-sm md:max-w-lg  mx-auto md:mx-0  border  flex flex-col rounded-lg p-2">
+const ProductCard = ({ product }: Iprops) => {
+  const { title, description, imageUrl, price, category } = product;
+  return (
+    <div className=" max-w-sm md:max-w-lg  mx-auto md:mx-0  border  flex flex-col rounded-lg p-2">
+      <Image imageUrl={imageUrl} alt={"Prodact Name"} classname="rounded-lg" />
 
-<Image imageUrl={imageUrl} alt={"Prodact Name"} classname="rounded-lg"/>
+      <h3 className="text-lg font-semibold">{lesstxt(title, 25)}</h3>
 
-<h3 className="text-lg font-semibold">{lesstxt(title , 25)}</h3>
+      <p className="text-xs text-gray-600 break-words ">
+        {lesstxt(description)}
+      </p>
+      <div className="flex m-1">
+        <span className="bg-slate-950  w-6 h-6 rounded-full mr-1 cursor-pointer" />
+        <span className="bg-gray-800  w-6 h-6 rounded-full mr-1 cursor-pointer" />
+        <span className="bg-red-950  w-6 h-6 rounded-full mr-1 cursor-pointer" />
+      </div>
 
-<p className="text-xs text-gray-600 break-words ">{lesstxt(description)}</p>
-<div className="flex m-1">
-<span className="bg-slate-950  w-6 h-6 rounded-full mr-1 cursor-pointer"  />
-<span className="bg-gray-800  w-6 h-6 rounded-full mr-1 cursor-pointer"  />
-<span className="bg-red-950  w-6 h-6 rounded-full mr-1 cursor-pointer"  />
+      <div className="flex  justify-between items-center my-4 space-x-2">
+        <span className="text-lg  text-indigo-600 font-semibold">{price}</span>
+        <Image
+          imageUrl={category.imageUrl}
+          alt={category.name}
+          classname="w-12 h-12 rounded-full"
+        />
+      </div>
 
-</div>
+      <div className="flex items-center justify-between space-x-2 ">
+        <Button className="border-red-700 bg-red-700  text-white ">EDIT</Button>
+        <Button className="border-blue-600 bg-slate-600  text-white">
+          REMOVE
+        </Button>
+      </div>
+    </div>
+  );
+};
 
-<div className="flex  justify-between items-center my-4 space-x-2">
-<span className="text-lg  text-indigo-600 font-semibold">{price}</span>
-<Image imageUrl={category.imageUrl} alt={category.name} classname="w-12 h-12 rounded-full"/>
-
-</div>
-
-<div className="flex items-center justify-between space-x-2 ">
-<Button className="border-red-700 bg-red-700  text-white ">EDIT</Button>
-<Button className="border-blue-600 bg-slate-600  text-white">REMOVE</Button>
-</div>
-
-  </div>
-)};
-
-export default  ProductCard;
+export default ProductCard;

@@ -1,128 +1,128 @@
-import ProductCard from './components/Card/ProductCard'
-import { productlist } from './components/data'
-import { forminputlist } from './components/data'
-import { ChangeEvent, useState ,FormEvent } from 'react'
-import Modal from './components/ui/Modal'
-import Button from './components/ui/Button'
-import Input from './components/ui/Input'
-import { IProduct } from './components/interfaces'
-import { ValidtionObj } from './components/Validation'
-import ErrorMassage from './components/ErrorMassage'
+import ProductCard from "./components/Card/ProductCard";
+import { productlist } from "./components/data";
+import { forminputlist } from "./components/data";
+import { ChangeEvent, useState, FormEvent } from "react";
+import Modal from "./components/ui/Modal";
+import Button from "./components/ui/Button";
+import Input from "./components/ui/Input";
+import { IProduct } from "./components/interfaces";
+import { ValidtionObj } from "./components/Validation";
+import ErrorMassage from "./components/ErrorMassage";
 
 function App() {
-const defaultprojectobj = {
-title :'',
-description:'',
-imageUrl:'',
-price:'',
-colors :[],
-category:{
-  name:"",
-  imageUrl:""
-},
-};
+  const defaultprojectobj = {
+    title: "",
+    description: "",
+    imageUrl: "",
+    price: "",
+    colors: [],
+    category: {
+      name: "",
+      imageUrl: "",
+    },
+  };
 
+  //------------State--------//
 
+  const [isOpen, setIsOpen] = useState(false);
 
-//------------State--------//
-
-const [isOpen, setIsOpen] = useState(false)
-
-const [errors , setErrors] = useState({ title :'', description:'', imageUrl:'',price:'' })
-
-const[product,setproduct] = useState<IProduct>(defaultprojectobj)
-
-//------------Handlers--------//
-
-const open = ()=> setIsOpen(true)
-
-const close = ()=> setIsOpen(false)
-
-const onchangeHandler = (event:ChangeEvent<HTMLInputElement>)=>{
-  const {value , name} = event.target
-
-  setproduct ({
-    ...product,
-    [name]:value,
+  const [errors, setErrors] = useState({
+    title: "",
+    description: "",
+    imageUrl: "",
+    price: "",
   });
-};
 
-const oncancel = () => {
-     setproduct(defaultprojectobj);
-     close();
+  const [product, setproduct] = useState<IProduct>(defaultprojectobj);
+
+  //------------Handlers--------//
+
+  const open = () => setIsOpen(true);
+
+  const close = () => setIsOpen(false);
+
+  const onchangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
+    const { value, name } = event.target;
+
+    setproduct({
+      ...product,
+      [name]: value,
+    });
+  };
+
+  const oncancel = () => {
+    setproduct(defaultprojectobj);
+    close();
   };
 
   const submitobject = (event: FormEvent<HTMLFormElement>): void => {
-   event.preventDefault();
+    event.preventDefault();
 
-  const {title , description , imageUrl , price } = product;
+    const { title, description, imageUrl, price } = product;
 
-  const errors = ValidtionObj({title , description , imageUrl , price});
+    const errors = ValidtionObj({ title, description, imageUrl, price });
 
-const hasErrorMsg =
-Object.values(errors).some(value => value === "") && Object.values(errors).every(value => value === "");
+    const hasErrorMsg =
+      Object.values(errors).some((value) => value === "") &&
+      Object.values(errors).every((value) => value === "");
 
-if (!hasErrorMsg) {
-  setErrors(errors)
-  return;
-};
+    if (!hasErrorMsg) {
+      setErrors(errors);
+      return;
+    }
 
-console.log("Send product to Server")
-
-
+    console.log("Send product to Server");
   };
- 
-//------------Rendars--------//
 
-const Rendarproductlist =productlist.map(product => <ProductCard key={product.id} product={product}/> )  
+  //------------Rendars--------//
 
-const RendarsForminput = forminputlist.map(input => (
+  const Rendarproductlist = productlist.map((product) => (
+    <ProductCard key={product.id} product={product} />
+  ));
 
-<div className='flex flex-col ' key={input.id}>
+  const RendarsForminput = forminputlist.map((input) => (
+    <div className="flex flex-col " key={input.id}>
+      <label htmlFor="input" className="text-white mb-1">
+        {input.label}
+      </label>
 
-  <label htmlFor="input" className='text-white mb-1'>{input.label}</label>
+      <Input
+        type={input.type}
+        name={input.name}
+        id={input.id}
+        value={product[input.name]}
+        onChange={onchangeHandler}
+      />
 
-<Input  type={input.type} name={input.name} id={input.id} value={product[input.name]} onChange={onchangeHandler}/>
+      <ErrorMassage msg={errors[input.name]} />
+    </div>
+  ));
 
-<ErrorMassage msg={errors[input.name]}/>
-</div> 
-));
- 
-
-
-                //------------Calls--------//
-
+  //------------Calls--------//
 
   return (
     <main className="container ">
-        <Button className=' bg-red-700 'onClick={open}>Add</Button>
+      <Button className=" bg-red-700 " onClick={open}>
+        Add
+      </Button>
 
-    <div className="p-8 grid grid-cols-1  md:grid-cols-2  lg:grid-cols-3  xl:grid-cols-4  gap-3.5 ">
-       {Rendarproductlist}
-    </div>
-       <Modal isOpen={isOpen}  close={close} title='Add A NEW Product'>
-        <form className=" space-y-3" onSubmit={submitobject}> 
+      <div className="p-8 grid grid-cols-1  md:grid-cols-2  lg:grid-cols-3  xl:grid-cols-4  gap-3.5 ">
+        {Rendarproductlist}
+      </div>
+      <Modal isOpen={isOpen} close={close} title="Add A NEW Product">
+        <form className=" space-y-3" onSubmit={submitobject}>
           {RendarsForminput}
 
-        <div className="flex items-center  space-x-2">
-          <Button className=' bg-red-700 text-white '>Submit</Button>
-          <Button className=' bg-gray-700  text-white ' onClick={oncancel}>Cancel</Button>
-        </div>
-
-        </form>      
-       </Modal>
-      
-</main>
-
-
-    
-  )
+          <div className="flex items-center  space-x-2">
+            <Button className=" bg-red-700 text-white ">Submit</Button>
+            <Button className=" bg-gray-700  text-white " onClick={oncancel}>
+              Cancel
+            </Button>
+          </div>
+        </form>
+      </Modal>
+    </main>
+  );
 }
 
-export default App
-
-
-
-
-
-
+export default App;
