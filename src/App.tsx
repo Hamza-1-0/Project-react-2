@@ -52,11 +52,20 @@ const oncancel = () => {
   const submitobject = (event: FormEvent<HTMLFormElement>): void => {
    event.preventDefault();
 
-  const {title , description , imageUrl , price } = product
+  const {title , description , imageUrl , price } = product;
 
-  const errors = ValidtionObj({title , description , imageUrl , price})
+  const errors = ValidtionObj({title , description , imageUrl , price});
 
-   console.log(errors);
+const hasErrorMsg =
+Object.values(errors).some(value => value === "") && Object.values(errors).every(value => value === "");
+
+if (!hasErrorMsg) {
+  return;
+};
+
+console.log("Send product to Server")
+
+
   };
  
 //------------Rendars--------//
@@ -71,7 +80,7 @@ const RendarsForminput =forminputlist.map(input =>
 
 <Input  type={input.type} name={input.name} id={input.id} value={product[input.name]} onChange={onchangeHandler}/>
 
-</div> )
+</div> );
  
 
 
@@ -105,3 +114,9 @@ const RendarsForminput =forminputlist.map(input =>
 }
 
 export default App
+
+
+
+
+
+

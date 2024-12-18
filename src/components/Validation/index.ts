@@ -1,10 +1,7 @@
-/**
- * 
- * @param product 
- * @returns 
- */
 
-export function ValidtionObj( product :{title:string , description : string , imageUrl : string , price : string}) {
+
+export const ValidtionObj = ( product :{title:string , description : string , imageUrl : string , price : string})=> {
+
 const errors={
     title :'',
     description:'',
@@ -12,7 +9,7 @@ const errors={
     price:'',
 }
 
-const ValidUrl =/(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)/.test(product.imageUrl)
+const ValidUrl =/\/{2}.+?\.(jpg|png|gif)/.test(product.imageUrl);
 
 if(!product.title.trim() || product.title.length < 10 || product.title.length > 80){
     errors.title = 'Title must be between 10 and 80 characters long.';
@@ -20,11 +17,12 @@ if(!product.title.trim() || product.title.length < 10 || product.title.length > 
 if(!product.description.trim() || product.description.length < 10 || product.description.length > 900){
     errors.description='Description must be between 10 and 900 characters long.';
 }
-if(!product.imageUrl.trim || !ValidUrl){
+if(!product.imageUrl.trim() || !ValidUrl){
     errors.imageUrl = 'Invalid URL. Please enter a valid URL.';
 }
-if ( !product.price.trim || !isNaN(Number(product.price))){
+if (!product.price.trim() || isNaN(Number(product.price))){
     errors.price = 'Price must be a number.';
 }
-return errors
+
+return errors;
 }
