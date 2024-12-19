@@ -34,6 +34,9 @@ function App() {
     price: "",
   });
 
+  const [tempcolor, setTempcolor] = useState<string[]>([]);
+  console.log(tempcolor);
+
   const [product, setproduct] = useState<IProduct>(defaultprojectobj);
 
   //------------Handlers--------//
@@ -105,7 +108,11 @@ function App() {
   ));
 
   const RendarProductcolors = colors.map((color) => (
-    <Circlecolor key={color} color={color} />
+    <Circlecolor
+      key={color}
+      color={color}
+      onClick={() => setTempcolor((prev) => [...prev, color])}
+    />
   ));
 
   //------------Calls--------//
