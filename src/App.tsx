@@ -1,5 +1,5 @@
 import ProductCard from "./components/Card/ProductCard";
-import { productlist } from "./components/data";
+import { colors, productlist } from "./components/data";
 import { forminputlist } from "./components/data";
 import { ChangeEvent, useState, FormEvent } from "react";
 import Modal from "./components/ui/Modal";
@@ -7,7 +7,8 @@ import Button from "./components/ui/Button";
 import Input from "./components/ui/Input";
 import { IProduct } from "./components/interfaces";
 import { ValidtionObj } from "./components/Validation";
-import ErrorMassage from "./components/ErrorMassage";
+import ErrorMassage from "./components/ui/ErrorMassage";
+import Circlecolor from "./components/ui/Circlecolor";
 
 function App() {
   const defaultprojectobj = {
@@ -103,6 +104,10 @@ function App() {
     </div>
   ));
 
+  const RendarProductcolors = colors.map((color) => (
+    <Circlecolor key={color} color={color} />
+  ));
+
   //------------Calls--------//
 
   return (
@@ -117,6 +122,10 @@ function App() {
       <Modal isOpen={isOpen} close={close} title="Add A NEW Product">
         <form className=" space-y-3" onSubmit={submitobject}>
           {RendarsForminput}
+          <div className="flex items-center  space-x-2">
+            {" "}
+            {RendarProductcolors}
+          </div>
 
           <div className="flex items-center  space-x-2">
             <Button className=" bg-red-700 text-white ">Submit</Button>
