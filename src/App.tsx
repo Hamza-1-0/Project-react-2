@@ -111,7 +111,13 @@ function App() {
     <Circlecolor
       key={color}
       color={color}
-      onClick={() => setTempcolor((prev) => [...prev, color])}
+      onClick={() => {
+        if (tempcolor.includes(color)) {
+          setTempcolor((prev) => prev.filter((item) => item !== color));
+          return;
+        }
+        setTempcolor((prev) => [...prev, color]);
+      }}
     />
   ));
 
@@ -129,11 +135,20 @@ function App() {
       <Modal isOpen={isOpen} close={close} title="Add A NEW Product">
         <form className=" space-y-3" onSubmit={submitobject}>
           {RendarsForminput}
-          <div className="flex items-center  space-x-2">
+          <div className="flex items-center flex-wrap  space-x-2">
             {" "}
             {RendarProductcolors}
           </div>
-
+          <div className="flex items-center flex-wrap space-x-2">
+            {tempcolor.map((color) => (
+              <span
+                className="p-1 mr-1 mb-1 text-xs rounded-md text-white"
+                style={{ backgroundColor: color }}
+              >
+                {color}
+              </span>
+            ))}
+          </div>
           <div className="flex items-center  space-x-2">
             <Button className=" bg-red-700 text-white ">Submit</Button>
             <Button className=" bg-gray-700  text-white " onClick={oncancel}>
