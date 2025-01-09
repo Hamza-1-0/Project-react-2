@@ -39,7 +39,6 @@ function App() {
   });
 
   const [tempcolor, setTempcolor] = useState<string[]>([]);
-  console.log(tempcolor);
 
   //------------Handlers--------//
 
@@ -83,9 +82,12 @@ function App() {
     }
 
     setproducts((prev) => [
-      ...prev,
       { ...product, id: uuidv4(), colors: tempcolor },
+      ...prev,
     ]);
+    setproduct(defaultprojectobj);
+    setTempcolor([]);
+    close();
   };
 
   //------------Rendars--------//

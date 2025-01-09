@@ -1,6 +1,7 @@
 import Image from "../ImageCompon/Image";
 import { IProduct } from "../interfaces";
 import Button from "../ui/Button";
+import Circlecolor from "../ui/Circlecolor";
 import { lesstxt } from "../Utils/function";
 
 interface Iprops {
@@ -8,7 +9,10 @@ interface Iprops {
 }
 
 const ProductCard = ({ product }: Iprops) => {
-  const { title, description, imageUrl, price, category } = product;
+  const { title, description, imageUrl, price, category, colors } = product;
+  const RendarProductcolors = colors.map((color) => (
+    <Circlecolor key={color} color={color} />
+  ));
   return (
     <div className=" max-w-sm md:max-w-lg  mx-auto md:mx-0  border  flex flex-col rounded-lg p-2">
       <Image imageUrl={imageUrl} alt={"Prodact Name"} classname="rounded-lg" />
@@ -18,10 +22,8 @@ const ProductCard = ({ product }: Iprops) => {
       <p className="text-xs text-gray-600 break-words ">
         {lesstxt(description)}
       </p>
-      <div className="flex m-1">
-        <span className="bg-slate-950  w-6 h-6 rounded-full mr-1 cursor-pointer" />
-        <span className="bg-gray-800  w-6 h-6 rounded-full mr-1 cursor-pointer" />
-        <span className="bg-red-950  w-6 h-6 rounded-full mr-1 cursor-pointer" />
+      <div className="flex items-center flex-wrap  space-x-2">
+        {RendarProductcolors}
       </div>
 
       <div className="flex  justify-between items-center my-4 space-x-2">

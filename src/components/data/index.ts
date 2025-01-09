@@ -23,7 +23,7 @@ export const productlist: IProduct[] = [
       "Carbonite web goalkeeper gloves are ergonomically designed to give easy fit",
     imageUrl: "https://picsum.photos/seed/pJdcGJQ5/640/480",
     price: "200.00",
-    colors: ["#7fff00", "#00ffff", "#bdb76b"],
+    colors: ["#7fff00", "#00ffff", "#bdb76b", "#800000"],
     category: {
       name: "car",
       imageUrl: "https://picsum.photos/seed/pJdcGJQ5/640/480",
