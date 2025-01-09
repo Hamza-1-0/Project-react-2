@@ -9,6 +9,7 @@ import { IProduct } from "./components/interfaces";
 import { ValidtionObj } from "./components/Validation";
 import ErrorMassage from "./components/ui/ErrorMassage";
 import Circlecolor from "./components/ui/Circlecolor";
+import { v4 as uuidv4 } from "uuid";
 
 function App() {
   const defaultprojectobj = {
@@ -24,6 +25,9 @@ function App() {
   };
 
   //------------State--------//
+  const [products, setproducts] = useState<IProduct[]>(productlist);
+
+  const [product, setproduct] = useState<IProduct>(defaultprojectobj);
 
   const [isOpen, setIsOpen] = useState(false);
 
@@ -36,8 +40,6 @@ function App() {
 
   const [tempcolor, setTempcolor] = useState<string[]>([]);
   console.log(tempcolor);
-
-  const [product, setproduct] = useState<IProduct>(defaultprojectobj);
 
   //------------Handlers--------//
 
@@ -80,12 +82,15 @@ function App() {
       return;
     }
 
-    console.log("Send product to Server");
+    setproducts((prev) => [
+      ...prev,
+      { ...product, id: uuidv4(), colors: tempcolor },
+    ]);
   };
 
   //------------Rendars--------//
 
-  const Rendarproductlist = productlist.map((product) => (
+  const Rendarproductlist = products.map((product) => (
     <ProductCard key={product.id} product={product} />
   ));
 

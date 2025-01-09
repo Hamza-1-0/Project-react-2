@@ -1,9 +1,9 @@
 import { IProduct } from "../interfaces/index";
 import { IFormInput } from "../interfaces/index";
-
+import { v4 as uuidv4 } from "uuid";
 export const productlist: IProduct[] = [
   {
-    id: 1,
+    id: uuidv4(),
     title: "Modern Plastic Computer",
     description:
       "Carbonite web goalkeeper gloves are ergonomically designed to give easy fit",
@@ -17,7 +17,7 @@ export const productlist: IProduct[] = [
   },
 
   {
-    id: 2,
+    id: uuidv4(),
     title: "Modern Plastic Computer",
     description:
       "Carbonite web goalkeeper gloves are ergonomically designed to give easy fit",
@@ -31,7 +31,7 @@ export const productlist: IProduct[] = [
   },
 
   {
-    id: 3,
+    id: uuidv4(),
     title: "Modern Plastic Computer",
     description:
       "Carbonite web goalkeeper gloves are ergonomically designed to give easy fit",
@@ -44,7 +44,7 @@ export const productlist: IProduct[] = [
     },
   },
   {
-    id: 4,
+    id: uuidv4(),
     title: "Modern Plastic Computer",
     description:
       "Carbonite web goalkeeper gloves are ergonomically designed to give easy fit",
@@ -57,7 +57,7 @@ export const productlist: IProduct[] = [
     },
   },
   {
-    id: 5,
+    id: uuidv4(),
     title: "Modern Plastic Computer",
     description:
       "Carbonite web goalkeeper gloves are ergonomically designed to give easy fit",
@@ -70,7 +70,7 @@ export const productlist: IProduct[] = [
     },
   },
   {
-    id: 6,
+    id: uuidv4(),
     title: "Modern Plastic Computer",
     description:
       "Carbonite web goalkeeper gloves are ergonomically designed to give easy fit",
@@ -83,7 +83,7 @@ export const productlist: IProduct[] = [
     },
   },
   {
-    id: 7,
+    id: uuidv4(),
     title: "Modern Plastic Computer",
     description:
       "Carbonite web goalkeeper gloves are ergonomically designed to give easy fit",
@@ -96,7 +96,7 @@ export const productlist: IProduct[] = [
     },
   },
   {
-    id: 8,
+    id: uuidv4(),
     title: "Modern Plastic Computer",
     description:
       "Carbonite web goalkeeper gloves are ergonomically designed to give easy fit",
