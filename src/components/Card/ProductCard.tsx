@@ -22,7 +22,7 @@ const ProductCard = ({ product }: Iprops) => {
       <p className="text-xs text-gray-600 break-words ">
         {lesstxt(description)}
       </p>
-      <div className="flex items-center flex-wrap  space-x-2">
+      <div className="flex items-center flex-wrap  space-x-2 mt-2">
         {RendarProductcolors}
       </div>
 

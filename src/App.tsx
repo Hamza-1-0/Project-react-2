@@ -10,6 +10,7 @@ import { ValidtionObj } from "./components/Validation";
 import ErrorMassage from "./components/ui/ErrorMassage";
 import Circlecolor from "./components/ui/Circlecolor";
 import { v4 as uuidv4 } from "uuid";
+import Select from "./components/ui/Select";
 
 function App() {
   const defaultprojectobj = {
@@ -132,7 +133,10 @@ function App() {
 
   return (
     <main className="container ">
-      <Button className=" bg-red-700 " onClick={open}>
+      <Button
+        className=" bg-teal-800  flex items-center m-auto mt-3 p-3 pl-10 pr-10 text-white text-center  "
+        onClick={open}
+      >
         Add
       </Button>
 
@@ -156,6 +160,9 @@ function App() {
               </span>
             ))}
           </div>
+
+          <Select />
+
           <div className="flex items-center  space-x-2">
             <Button className=" bg-red-700 text-white ">Submit</Button>
             <Button className=" bg-gray-700  text-white " onClick={oncancel}>
