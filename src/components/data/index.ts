@@ -1,6 +1,7 @@
-import { IProduct } from "../interfaces/index";
+import { ICategories, IProduct } from "../interfaces/index";
 import { IFormInput } from "../interfaces/index";
 import { v4 as uuidv4 } from "uuid";
+
 export const productlist: IProduct[] = [
   {
     id: uuidv4(),
@@ -148,4 +149,43 @@ export const colors: string[] = [
   "#ff00ff",
   "#00ffff",
   "#ff0000",
+];
+
+export const categories: ICategories[] = [
+  {
+    id: uuidv4(),
+    name: "Wade Cooper",
+    imageUrl:
+      "https://images.unsplash.com/photo-1491528323818-fdd1faba62cc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
+  },
+  {
+    id: uuidv4(),
+    name: "Arlene Mccoy",
+    imageUrl:
+      "https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
+  },
+  {
+    id: uuidv4(),
+    name: "Devon Webb",
+    imageUrl:
+      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2.25&w=256&h=256&q=80",
+  },
+  {
+    id: uuidv4(),
+    name: "Tom Cook",
+    imageUrl:
+      "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
+  },
+  {
+    id: uuidv4(),
+    name: "Tanya Fox",
+    imageUrl:
+      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
+  },
+  {
+    id: uuidv4(),
+    name: "Hellen Schmidt",
+    imageUrl:
+      "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
+  },
 ];

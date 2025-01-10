@@ -6,13 +6,24 @@ import { lesstxt } from "../Utils/function";
 
 interface Iprops {
   product: IProduct;
+  setProductToEdit: (product: IProduct) => void;
+  openModel: () => void;
 }
 
-const ProductCard = ({ product }: Iprops) => {
+const ProductCard = ({ product, setProductToEdit, openModel }: Iprops) => {
   const { title, description, imageUrl, price, category, colors } = product;
+
+  //------------Rendars--------//
+
   const RendarProductcolors = colors.map((color) => (
     <Circlecolor key={color} color={color} />
   ));
+
+  //------------Handlers--------//
+  const OnEdit = () => {
+    setProductToEdit(product);
+    openModel();
+  };
   return (
     <div className=" max-w-sm md:max-w-lg  mx-auto md:mx-0  border  flex flex-col rounded-lg p-2">
       <Image imageUrl={imageUrl} alt={"Prodact Name"} classname="rounded-lg" />
@@ -36,7 +47,12 @@ const ProductCard = ({ product }: Iprops) => {
       </div>
 
       <div className="flex items-center justify-between space-x-2 ">
-        <Button className="border-red-700 bg-red-700  text-white ">EDIT</Button>
+        <Button
+          className="border-red-700 bg-red-700  text-white  "
+          onClick={OnEdit}
+        >
+          EDIT
+        </Button>
         <Button className="border-blue-600 bg-slate-600  text-white">
           REMOVE
         </Button>
