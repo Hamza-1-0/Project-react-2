@@ -50,7 +50,6 @@ function App() {
 
   const [selectcategories, setSelectcategories] = useState(categories[0]);
 
-  console.log(productToEditIdx);
   //------------Handlers--------//
 
   const open = () => setIsOpen(true);
@@ -153,7 +152,6 @@ function App() {
 
   const Rendarproductlist = products.map((product, idx) => (
     <>
-      <h3 className="text-center text-3xl">{idx}</h3>
       <ProductCard
         key={product.id}
         product={product}
@@ -293,10 +291,12 @@ function App() {
           )}
           {RenderproductEditWithErrorMsg("price", "Product price", "price")}
 
-          {/* <Select
-            selected={selectcategories}
-            setSelected={setSelectcategories}
-          /> */}
+          <Select
+            selected={productToEdit.category}
+            setSelected={(value) =>
+              setProductToEdit({ ...productToEdit, category: value })
+            }
+          />
 
           <div className="flex flex-wrap  space-x-2">
             {" "}
