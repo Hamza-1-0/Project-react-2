@@ -11,6 +11,7 @@ import ErrorMassage from "./components/ui/ErrorMassage";
 import Circlecolor from "./components/ui/Circlecolor";
 import { v4 as uuidv4 } from "uuid";
 import Select from "./components/ui/Select";
+import { productNameTypes } from "./Types";
 
 function App() {
   const defaultprojectobj = {
@@ -28,6 +29,9 @@ function App() {
   //------------State--------//
   const [products, setproducts] = useState<IProduct[]>(productlist);
 
+  const [productToEdit, setProductToEdit] =
+    useState<IProduct>(defaultprojectobj);
+
   const [product, setproduct] = useState<IProduct>(defaultprojectobj);
 
   const [isOpenEditModel, setIsOpenEditModel] = useState(false);
@@ -44,10 +48,6 @@ function App() {
   const [tempcolor, setTempcolor] = useState<string[]>([]);
 
   const [selectcategories, setSelectcategories] = useState(categories[0]);
-
-  const [productToEdit, setProductToEdit] =
-    useState<IProduct>(defaultprojectobj);
-  console.log("Edit You Product", productToEdit);
 
   //------------Handlers--------//
 
@@ -72,7 +72,19 @@ function App() {
       [name]: "",
     });
   };
+  const onchangeEditHandler = (event: ChangeEvent<HTMLInputElement>) => {
+    const { value, name } = event.target;
 
+    setProductToEdit({
+      ...productToEdit,
+      [name]: value,
+    });
+
+    setErrors({
+      ...errors,
+      [name]: "",
+    });
+  };
   const oncancel = () => {
     setproduct(defaultprojectobj);
     close();
@@ -107,6 +119,26 @@ function App() {
     setTempcolor([]);
     close();
   };
+  const submitEditobject = (event: FormEvent<HTMLFormElement>): void => {
+    event.preventDefault();
+
+    const { title, description, imageUrl, price } = productToEdit;
+
+    const errors = ValidtionObj({ title, description, imageUrl, price });
+
+    const hasErrorMsg =
+      Object.values(errors).some((value) => value === "") &&
+      Object.values(errors).every((value) => value === "");
+
+    if (!hasErrorMsg) {
+      setErrors(errors);
+      return;
+    }
+
+    setProductToEdit(defaultprojectobj);
+    setTempcolor([]);
+    close();
+  };
 
   //------------Rendars--------//
 
@@ -121,7 +153,7 @@ function App() {
 
   const RendarsForminput = forminputlist.map((input) => (
     <div className="flex flex-col " key={input.id}>
-      <label htmlFor="input" className="text-white mb-1">
+      <label htmlFor={input.id} className="text-white mb-1">
         {input.label}
       </label>
 
@@ -151,6 +183,29 @@ function App() {
     />
   ));
 
+  const RenderproductEditWithErrorMsg = (
+    id: string,
+    label: string,
+    name: productNameTypes
+  ) => {
+    return (
+      <div className="flex flex-col ">
+        <label htmlFor={id} className="text-white mb-1">
+          {label}
+        </label>
+
+        <Input
+          type="text"
+          name={name}
+          id={id}
+          value={productToEdit[name]}
+          onChange={onchangeEditHandler}
+        />
+
+        <ErrorMassage msg={errors[name]} />
+      </div>
+    );
+  };
   //------------Calls--------//
 
   return (
@@ -206,15 +261,25 @@ function App() {
         close={closeModel}
         title="Edit A NEW Product"
       >
-        <form className="space-y-3" onSubmit={submitobject}>
-          {RendarsForminput}
-
-          <Select
+        <form className="space-y-3" onSubmit={submitEditobject}>
+          {RenderproductEditWithErrorMsg("title", "Product Title", "title")}
+          {RenderproductEditWithErrorMsg(
+            "description",
+            "Product description",
+            "description"
+          )}
+          {RenderproductEditWithErrorMsg(
+            "imageUrl",
+            "Product imageUrl",
+            "imageUrl"
+          )}
+          {RenderproductEditWithErrorMsg("price", "Product price", "price")}
+          {/* <Select
             selected={selectcategories}
             setSelected={setSelectcategories}
-          />
+          /> */}
 
-          <div className="flex flex-wrap  space-x-2">
+          {/* <div className="flex flex-wrap  space-x-2">
             {" "}
             {RendarProductcolors}
           </div>
@@ -227,7 +292,7 @@ function App() {
                 {color}
               </span>
             ))}
-          </div>
+          </div> */}
 
           <div className="flex items-center  space-x-2">
             <Button className=" bg-red-700 text-white ">Submit</Button>
