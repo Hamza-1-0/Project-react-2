@@ -28,11 +28,12 @@ function App() {
 
   //------------State--------//
   const [products, setproducts] = useState<IProduct[]>(productlist);
+  const [product, setproduct] = useState<IProduct>(defaultprojectobj);
 
   const [productToEdit, setProductToEdit] =
     useState<IProduct>(defaultprojectobj);
 
-  const [product, setproduct] = useState<IProduct>(defaultprojectobj);
+  const [productToEditIdx, setproductToEditIdx] = useState<number>(0);
 
   const [isOpenEditModel, setIsOpenEditModel] = useState(false);
 
@@ -49,6 +50,7 @@ function App() {
 
   const [selectcategories, setSelectcategories] = useState(categories[0]);
 
+  console.log(productToEditIdx);
   //------------Handlers--------//
 
   const open = () => setIsOpen(true);
@@ -135,20 +137,29 @@ function App() {
       return;
     }
 
+    const UpdateProduts = [...products];
+    UpdateProduts[productToEditIdx] = productToEdit;
+    setproducts(UpdateProduts);
+
     setProductToEdit(defaultprojectobj);
     setTempcolor([]);
-    close();
+    closeModel();
   };
 
   //------------Rendars--------//
 
-  const Rendarproductlist = products.map((product) => (
-    <ProductCard
-      key={product.id}
-      product={product}
-      setProductToEdit={setProductToEdit}
-      openModel={openModel}
-    />
+  const Rendarproductlist = products.map((product, idx) => (
+    <>
+      <h3 className="text-center text-3xl">{idx}</h3>
+      <ProductCard
+        key={product.id}
+        product={product}
+        setProductToEdit={setProductToEdit}
+        openModel={openModel}
+        idx={idx}
+        setproductToEditIdx={setproductToEditIdx}
+      />
+    </>
   ));
 
   const RendarsForminput = forminputlist.map((input) => (
