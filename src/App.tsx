@@ -138,7 +138,10 @@ function App() {
     }
 
     const UpdateProduts = [...products];
-    UpdateProduts[productToEditIdx] = productToEdit;
+    UpdateProduts[productToEditIdx] = {
+      ...productToEdit,
+      colors: tempcolor.concat(productToEdit.colors),
+    };
     setproducts(UpdateProduts);
 
     setProductToEdit(defaultprojectobj);
@@ -186,6 +189,10 @@ function App() {
       color={color}
       onClick={() => {
         if (tempcolor.includes(color)) {
+          setTempcolor((prev) => prev.filter((item) => item !== color));
+          return;
+        }
+        if (productToEdit.colors.includes(color)) {
           setTempcolor((prev) => prev.filter((item) => item !== color));
           return;
         }
@@ -285,17 +292,18 @@ function App() {
             "imageUrl"
           )}
           {RenderproductEditWithErrorMsg("price", "Product price", "price")}
+
           {/* <Select
             selected={selectcategories}
             setSelected={setSelectcategories}
           /> */}
 
-          {/* <div className="flex flex-wrap  space-x-2">
+          <div className="flex flex-wrap  space-x-2">
             {" "}
             {RendarProductcolors}
           </div>
           <div className="flex  flex-wrap space-x-2 ">
-            {tempcolor.map((color) => (
+            {tempcolor.concat(productToEdit.colors).map((color) => (
               <span
                 className="p-1 mr-1 mb-1 text-xs rounded-md text-white"
                 style={{ backgroundColor: color }}
@@ -303,8 +311,7 @@ function App() {
                 {color}
               </span>
             ))}
-          </div> */}
-
+          </div>
           <div className="flex items-center  space-x-2">
             <Button className=" bg-red-700 text-white ">Submit</Button>
             <Button className=" bg-gray-700  text-white " onClick={oncancel}>
