@@ -10,6 +10,7 @@ interface Iprops {
   openModel: () => void;
   setproductToEditIdx(value: number): void;
   idx: number;
+  openComfirmModel: () => void;
 }
 
 const ProductCard = ({
@@ -18,6 +19,7 @@ const ProductCard = ({
   openModel,
   idx,
   setproductToEditIdx,
+  openComfirmModel,
 }: Iprops) => {
   const { title, description, imageUrl, price, category, colors } = product;
 
@@ -32,6 +34,10 @@ const ProductCard = ({
     setProductToEdit(product);
     openModel();
     setproductToEditIdx(idx);
+  };
+  const onRemove = () => {
+    setProductToEdit(product);
+    openComfirmModel();
   };
   return (
     <div className=" max-w-sm md:max-w-lg  mx-auto md:mx-0  border  flex flex-col rounded-lg p-2">
@@ -62,7 +68,10 @@ const ProductCard = ({
         >
           EDIT
         </Button>
-        <Button className="border-blue-600 bg-slate-600  text-white">
+        <Button
+          className="border-blue-600 bg-slate-600  text-white"
+          onClick={onRemove}
+        >
           REMOVE
         </Button>
       </div>

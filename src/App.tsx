@@ -12,6 +12,7 @@ import Circlecolor from "./components/ui/Circlecolor";
 import { v4 as uuidv4 } from "uuid";
 import Select from "./components/ui/Select";
 import { productNameTypes } from "./Types";
+import toast, { Toaster } from "react-hot-toast";
 
 function App() {
   const defaultprojectobj = {
@@ -37,6 +38,8 @@ function App() {
 
   const [isOpenEditModel, setIsOpenEditModel] = useState(false);
 
+  const [isOpenComfirmModel, setIsOpenComfirmModel] = useState(false);
+
   const [isOpen, setIsOpen] = useState(false);
 
   const [errors, setErrors] = useState({
@@ -59,6 +62,10 @@ function App() {
   const openModel = () => setIsOpenEditModel(true);
 
   const closeModel = () => setIsOpenEditModel(false);
+
+  const openComfirmModel = () => setIsOpenComfirmModel(true);
+
+  const closeComfirmModel = () => setIsOpenComfirmModel(false);
 
   const onchangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
     const { value, name } = event.target;
@@ -86,11 +93,26 @@ function App() {
       [name]: "",
     });
   };
+
   const oncancel = () => {
     setproduct(defaultprojectobj);
     close();
   };
-
+  const RemoveProductHandler = () => {
+    const Filterd = products.filter(
+      (products) => products.id !== productToEdit.id
+    );
+    setproducts(Filterd);
+    closeComfirmModel();
+    toast("Product Removed", {
+      icon: "🔥",
+      style: {
+        borderRadius: "10px",
+        background: "#333",
+        color: "#fff",
+      },
+    });
+  };
   const submitobject = (event: FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
 
@@ -141,9 +163,18 @@ function App() {
       ...productToEdit,
       colors: tempcolor.concat(productToEdit.colors),
     };
-    setproducts(UpdateProduts);
 
+    toast("Product Removed", {
+      icon: "🔥",
+      style: {
+        borderRadius: "10px",
+        background: "#333",
+        color: "#fff",
+      },
+    });
+    setproducts(UpdateProduts);
     setProductToEdit(defaultprojectobj);
+
     setTempcolor([]);
     closeModel();
   };
@@ -159,6 +190,7 @@ function App() {
         openModel={openModel}
         idx={idx}
         setproductToEditIdx={setproductToEditIdx}
+        openComfirmModel={openComfirmModel}
       />
     </>
   ));
@@ -320,6 +352,30 @@ function App() {
           </div>
         </form>
       </Modal>
+
+      {/* Delete Product Comfirm Modal */}
+      <Modal
+        isOpen={isOpenComfirmModel}
+        close={closeComfirmModel}
+        title="Are you sure you want to delete this product"
+        description="This action can not be undone "
+      >
+        <div className="flex items-center  space-x-2">
+          <Button
+            className=" bg-red-700 text-white "
+            onClick={RemoveProductHandler}
+          >
+            Yes ,Remove product
+          </Button>
+          <Button
+            className=" bg-gray-700  text-white "
+            onClick={closeComfirmModel}
+          >
+            Cancel
+          </Button>
+        </div>
+      </Modal>
+      <Toaster />
     </main>
   );
 }
