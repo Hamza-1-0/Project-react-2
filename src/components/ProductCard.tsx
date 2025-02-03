@@ -1,7 +1,7 @@
-import Image from "../ImageCompon/Image";
+import Image from "./Image";
 import { IProduct } from "../interfaces";
-import Button from "../ui/Button";
-import Circlecolor from "../ui/Circlecolor";
+import Button from "./ui/Button";
+import Circlecolor from "./ui/Circlecolor";
 import { lesstxt } from "../Utils/function";
 
 interface Iprops {

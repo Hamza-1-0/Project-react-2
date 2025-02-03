@@ -1,4 +1,4 @@
-import { productNameTypes } from "../../Types";
+import { productNameTypes } from "../Types";
 
 export interface IProduct {
   id?: string;

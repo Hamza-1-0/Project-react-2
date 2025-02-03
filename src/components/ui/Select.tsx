@@ -7,8 +7,8 @@ import {
 } from "@headlessui/react";
 import { ChevronUpDownIcon } from "@heroicons/react/16/solid";
 import { CheckIcon } from "@heroicons/react/20/solid";
-import { categories } from "../data";
-import { ICategories } from "../interfaces";
+import { categories } from "../../data";
+import { ICategories } from "../../interfaces";
 
 interface IProps {
   selected: { name: string; imageUrl: string };
